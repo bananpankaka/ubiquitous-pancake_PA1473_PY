@@ -47,7 +47,7 @@ def line_following():
     
     threshold = (background_reflection + line_reflection)/2
 
-    DriveSpeed = 69
+    DriveSpeed = 30
     PROPORTIONAL_GAIN = 1.2
     
     while True:
@@ -76,8 +76,12 @@ def pick_up_pallet():
     while not hit_pallet():
         robot.drive(30, 0)
     # Lift pallet
-    robot.stop()
+    #robot.stop()
     fork_motor.run_angle(-420, 130)
+    if not pallet_sensor.pressed():
+        robot.stop()
+
+
 
 def main():
     pick_up_pallet()
